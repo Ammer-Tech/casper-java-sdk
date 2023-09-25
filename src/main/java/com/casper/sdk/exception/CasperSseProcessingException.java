@@ -1,6 +1,6 @@
 package com.casper.sdk.exception;
 
-import javax.ws.rs.sse.SseEvent;
+import jakarta.ws.rs.sse.SseEvent;
 
 /**
  * Exception that is thrown whilst processing an SseEvent

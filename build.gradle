@@ -16,12 +16,17 @@ apply plugin: 'java'
 group = 'network.casper'
 // Version number update for release
 version='2.4.1'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
+}
+
+configurations {
+    all*.exclude module: 'httpcore'
+    all*.exclude module: 'httpcore-nio'
 }
 
 dependencies {
@@ -35,8 +40,8 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     implementation "org.javatuples:javatuples:${javaTuplesVersion}"
     implementation "joda-time:joda-time:${jodaTimeVersion}"
-    implementation "org.apache.cxf:cxf-rt-rs-client:${cxfRtRsSseVersion}"
-    implementation "org.apache.cxf:cxf-rt-rs-sse:${cxfRtRsSseVersion}"
+    compileOnly "org.apache.cxf:cxf-rt-rs-client:${cxfRtRsSseVersion}"
+    compileOnly "org.apache.cxf:cxf-rt-rs-sse:${cxfRtRsSseVersion}"
 
     // log4j and slf4j
     compileOnly "org.slf4j:slf4j-api:${slf4jApiVersion}"
